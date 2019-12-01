@@ -6,21 +6,25 @@
         xmlns:local="clr-namespace:serial_devel"
         mc:Ignorable="d"
         Title="SerialMonitor" Height="600" Width="400" MinWidth="400" MinHeight="400">
-    <Grid x:Name="Grid1" OpacityMask="White" Background="#FFFFEAEA">
+    <Grid x:Name="Grid1" OpacityMask="White" Background="#FF81C59D">
         <Grid.RowDefinitions>
             <RowDefinition Height="74*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="Column1" Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="connect" Content="接続"  Click="connect_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Margin="0,64,90,0"/>
-        <Button Content="切断" Margin="0,64,10,0" Click="disconnect_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
-        <ComboBox x:Name="cmb" Margin="10,10,10,0" Height="22" VerticalAlignment="Top"/>
-        <TextBox x:Name="sendText" Margin="10,89,60,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
-        <Button x:Name="send" Content="send" Margin="0,89,10,0" Click="send_Click" HorizontalAlignment="Right" Width="45" Height="23" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cmb_baud" Margin="10,37,10,0" Height="22" VerticalAlignment="Top"/>
-        <TextBox x:Name="Receive_txtBox" Margin="10,117,10,10" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
-        <Label x:Name="status" Content="Label" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" Width="212"/>
+        <Button x:Name="connect" Content="Connect"  Click="connect_Click" Height="27" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Margin="0,74,97,0" FontSize="14"/>
+        <Button Content="Disconnect" Margin="0,74,10,0" Click="disconnect_Click" Height="27" VerticalAlignment="Top" HorizontalAlignment="Right" Width="82" FontSize="14"/>
+        <ComboBox x:Name="cmb" Margin="94,12,10,0" Height="25" VerticalAlignment="Top" FontSize="14" MouseDoubleClick="cmb_MouseDoubleClick"/>
+        <TextBox x:Name="sendText" Margin="10,106,54,0" TextWrapping="Wrap" Height="27" VerticalAlignment="Top" KeyDown="sendText_KeyDown" VerticalContentAlignment="Center" Padding="5,0"/>
+        <Button x:Name="send" Content="Send" Margin="0,106,10,0" Click="send_Click" HorizontalAlignment="Right" Width="39" Height="27" VerticalAlignment="Top" FontSize="14"/>
+        <ComboBox x:Name="cmb_baud" Margin="94,44,10,0" Height="25" VerticalAlignment="Top" IsEditable="True" FontSize="14"/>
+        <TextBox x:Name="Receive_txtBox" Margin="10,138,10,42" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Padding="5"/>
+        <Label x:Name="status" Content="Label" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top" Width="205" FontSize="14" Height="27"/>
+        <ComboBox x:Name="cmb_LF" Margin="0,0,10,9" Height="28" VerticalAlignment="Bottom" FontSize="14" HorizontalAlignment="Right" Width="103" HorizontalContentAlignment="Center"/>
+        <Label x:Name="status_Copy" Content="COMPorts" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="79" FontSize="14" Height="27"/>
+        <Label x:Name="status_Copy1" Content="BaudRate" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Width="76" Height="27" FontSize="14"/>
+        <CheckBox x:Name="checkBox_LF" Content="Clear sent text" Margin="10,0,252,10" VerticalContentAlignment="Center" Height="27" VerticalAlignment="Bottom" FontSize="14"/>
 
     </Grid>
 </Window>

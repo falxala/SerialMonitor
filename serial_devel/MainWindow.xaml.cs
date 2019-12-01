@@ -31,6 +31,13 @@ namespace serial_devel
             SetupTimer();
             cmb.SelectedIndex = 0;
             cmb_baud.SelectedIndex = 2;
+
+            cmb_LF.Items.Add("NONE");
+            cmb_LF.Items.Add("CR + LF");
+            cmb_LF.Items.Add("CR");
+            cmb_LF.Items.Add("LF");
+            cmb_LF.SelectedIndex = 1;
+            checkBox_LF.IsChecked = true;
         }
 
         System.IO.Ports.SerialPort serialPort = null;
@@ -120,12 +127,29 @@ namespace serial_devel
             if (serialPort.IsOpen == false) return;
 
             // テキストボックスから、送信するテキストを取り出す。
-            String data = sendText.Text + "\r\n";
+            String data = sendText.Text;
+            switch (cmb_LF.SelectedIndex) {
+                case 0:
+                    break;
+                case 1:
+                    data += "\r\n";
+                    break;
+                case 2:
+                    data += "\r";
+                    break;
+                case 3:
+                    data += "\n";
+                    break;
+            }
 
             try
             {
                 // シリアルポートからテキストを送信する.
                 serialPort.Write(data);
+                if (checkBox_LF.IsChecked == true)
+                {
+                    sendText.Clear();
+                }
             }
             catch (Exception ex)
             {
@@ -198,7 +222,23 @@ namespace serial_devel
             this.Closing += (s, e) => timer.Stop();
         }
 
+        private void sendText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                send_Click(null,null);
+        }
 
+        private void cmb_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
 
+        private void cmb_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            cmb.ItemsSource = null;
+            if (serialPort == null || serialPort.IsOpen == false)
+                selPort();
+            cmb.SelectedIndex = 0;
+        }
     }
 }
